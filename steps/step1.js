@@ -29,7 +29,7 @@ const server =http.createServer(app.handleReqRes)
    const trimmedPath=path.replace(/^\/+|\/+$/g,'')
    //console.log(trimmedPath)
    const method=req.method.toLowerCase()
-   const QueryStringObject= parsedUrl.query
+   const queryStringObject= parsedUrl.query
    //console.log(QueryStringObject)
    const headerObject =req.headers
    //console.log(headerObject)

@@ -1,10 +1,28 @@
+const {sampleHandler} = require('./handlers/routHandlers/samplehandler')
+//modal scaffolding
+const routes ={
+    sample:sampleHandler,
+}
 
-// getting dependencies
-const {samplerHandler} =require('./handlers/routHandlers/samplehandler')
+
+
+module.exports = routes
+
+
+
+
+
+
+
+
+
+
+/* // getting dependencies
+const {sampleHandler} =require('./handlers/routHandlers/samplehandler')
 
 
 const routes ={
-    sample:samplerHandler, // value and function which is to be called url
+    sample:sampleHandler, // value and function which is to be called url
 }
 
-module.exports =routes
+module.exports =routes */

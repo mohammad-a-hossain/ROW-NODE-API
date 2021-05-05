@@ -1,30 +1,28 @@
-//require http dependency
+// dependency
 const http =require('http')
 
 
-//getting handler from helpers
-const {handleReqRes} =require('./helpers/handleReqRes')
+// getting handlereqres from halper folder
+const {handleReqRes} = require('./helpers/handleReqRes')
 
-//creating an app object
+
+//creating a app object
 const app ={}
 
-// setting a configuration
+// creating configue
 app.config ={
-    port:4000
+    port: 4000
 }
 
-// creating a server 
-app.createServer=()=>{
-const server =http.createServer(app.handleReqRes)
-      server.listen(app.config.port, ()=>{
-      console.log(`this server is listening on port of ${app.config.port}`)
-      })
-    }
+ app.createServer =()=>{
+    const server =http.createServer(app.handleReqRes)
 
-// creating a handler to helpers
+    server.listen(app.config.port, ()=>{
+     console.log(`server is connected to the port of ${app.config.port}`)
+        })
+    }
+// 
 app.handleReqRes =handleReqRes
 
-// calling the server
-app.createServer()
 
-
+app.createServer() 
