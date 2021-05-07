@@ -6,6 +6,7 @@ const routes = require('../route')
 const { notFoundHandler } = require('../handlers/routHandlers/Notfound')
 
 
+
 //module scaffolding
 const handler ={}
 
@@ -20,7 +21,8 @@ handler.handleReqRes=(req, res) =>{
   // path
   const path =parsedUrl.pathname
   // path trimmed
-  const trimmedPath =parsedUrl.replace(/^\/+|\/+$/g,'')
+  const trimmedPath = path.replace(/^\/+|\/+$/g, '');
+ 
   //method for lower case
   const method =req.method.toLowerCase()
   // query string set
@@ -41,7 +43,7 @@ handler.handleReqRes=(req, res) =>{
   // set decoder for string
   const decoder = new StringDecoder('utf-8')
   // set a realdata name
-  const realData =""
+  let realData =""
 
 
   // declare a var that will find which trimmed path is exist or not
@@ -63,7 +65,9 @@ handler.handleReqRes=(req, res) =>{
   req.on('data',(buffer)=>{
       realData += decoder.write(buffer)
   })
-  req.end('end',()=>{
+
+  req.on('end',()=>{
+  realData += decoder.end()
   res.end('welcome my row node aPi')
   })
 
