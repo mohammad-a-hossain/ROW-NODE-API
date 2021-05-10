@@ -43,6 +43,25 @@ chosenHandler function will place inside the end event handler
 --make a lib folder for storing all data file 
 --maket data and create read update and delete file
 
+* step 7 set a user crud operation
+--set res.setHeader in reqres function and test data from  post man
+--first make a user handler function in routhandler forlder and a rout for user import to route
+--then set method in userHandler and declare all method for crud operation
+
+* step 8 make a  for validation users crud
+--make a utility file in handler for error handling during request in url then import handle in handlereqres page
+--in handlereqres realdata is inserted into parseJson
+--now set all validation of url in userHandler method _user.post
+--now import data from library and inquery if file exist or not
+-- now make a users folder in db folder 
+
+* step 9 password hashing
+-- now set a core module name CRYPTO in utility page for password encrypt
+--then get secretkey for password encryption goto environment page and import it to utility page
+--now get hash from utility and 
+
+
+
 
 
 

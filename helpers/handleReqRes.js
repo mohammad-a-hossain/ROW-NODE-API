@@ -1,9 +1,9 @@
 //getting dependencies
 const url =require('url')
-const { PassThrough } = require('stream')
 const { StringDecoder } = require('string_decoder')
 const routes = require('../route')
 const { notFoundHandler } = require('../handlers/routHandlers/Notfound')
+const {parseJSON} =require('../helpers/utilites')
 
 
 
@@ -18,6 +18,7 @@ const handler ={}
 handler.handleReqRes=(req, res) =>{
   //handling request url
   const parsedUrl= url.parse(req.url, true)
+ // console.log(parsedUrl)
   // path
   const path =parsedUrl.pathname
   // path trimmed
@@ -26,9 +27,10 @@ handler.handleReqRes=(req, res) =>{
   //method for lower case
   const method =req.method.toLowerCase()
   // query string set
-  const queryString = parsedUrl.query
+  const queryStringObject = parsedUrl.query
+ //console.log(queryString)
   //header object
-  const headerObject =req.header
+  const headersObject =req.headers
 
   // making a request property object
    const requestProperty={
@@ -36,30 +38,18 @@ handler.handleReqRes=(req, res) =>{
     path,
     trimmedPath,
     method,
-    queryString,
-    headerObject
+    queryStringObject,
+    headersObject
    }
-
+  
+  
   // set decoder for string
   const decoder = new StringDecoder('utf-8')
   // set a realdata name
   let realData =""
 
-
-  // declare a var that will find which trimmed path is exist or not
-  const chosenHandler = routes[trimmedPath] ? routes[trimmedPath]: notFoundHandler
-  //then call a function that will send statuscode and payload
-         chosenHandler(requestProperty,(statusCode, payload)=>{
-           statusCode = typeof statusCode === 'number' ?statusCode:500
-           payload = typeof payload === 'object' ? payload: {}
-           //now strinyfy data payload
-           const payloadString = JSON.stringify(payload)
-          // final response
-          res.writeHead(statusCode)
-          res.end(payloadString)
-         })
-
-
+    // declare a var that will find which trimmed path is exist or not
+    const chosenHandler = routes[trimmedPath] ? routes[trimmedPath]: notFoundHandler
 
   //setting a req data event on fire
   req.on('data',(buffer)=>{
@@ -68,7 +58,30 @@ handler.handleReqRes=(req, res) =>{
 
   req.on('end',()=>{
   realData += decoder.end()
-  res.end('welcome my row node aPi')
+
+  // parsing realdata into json object
+  requestProperty.body =parseJSON(realData)
+  //console.log(requestProperty.body)
+  // chosenHandler is set 
+ 
+   //then call a function that will send statuscode and payload
+          chosenHandler(requestProperty,(statusCode, payload)=>{
+      
+            statusCode = typeof statusCode === "number" ?statusCode:500;
+            payload = typeof payload === "object" ? payload: {}
+           
+            //now strinyfy data payload
+            const payloadString = JSON.stringify(payload)
+            
+            //testing a data if json object and sending through body
+            res.setHeader('Content-Type: application/json')
+          
+           // final response
+           res.writeHead(statusCode)
+           res.end(payloadString)
+          })
+
+          //res.end('welcome my row node aPi') 
   })
 
 

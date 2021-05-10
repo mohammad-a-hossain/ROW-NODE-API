@@ -2,11 +2,13 @@ const environment ={}
 // setting two port
 environment.staging={
     port:4000,
-    envName:'staging'
+    envName:'staging',
+    secretKey:'dfd343'
 }
 environment.production={
     port:5000,
-    envName:'production'
+    envName:'production',
+    secretKey:'344kre'
 }
 /* environment.development={
     port:6000,
@@ -22,7 +24,6 @@ environment.production={
   module.exports = environmentToExport
 
  
-
 
 
 

@@ -19,7 +19,7 @@ const app ={}
 // create data
 /*  data.create('test','textFile',{name:'abu hossain',hobby:'web development',age:40},(err)=>{
     console.log('error in creating file',err)
-})  */
+})  */ 
 
 // read file
 /* data.read('test','textFile',(err,result)=>{
@@ -32,9 +32,9 @@ const app ={}
 }) */
 
 // deleting the file
- data.delete('test','textFile', (err)=>{
+/*  data.delete('test','textFile', (err)=>{
     console.log(err)
-}) 
+})  */
  app.createServer =()=>{
     const server =http.createServer(app.handleReqRes)
 
