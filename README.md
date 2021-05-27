@@ -1,5 +1,5 @@
 # my row node.js learning path
-## this is basic node.js API project -teaching from Sumit-sir
+## this is basic node.js API project ,without database, only file system: -teaching from Sumit-sir
 * step1 working with response
 --require http
 --set app object
@@ -9,7 +9,7 @@
 --create server listen port
 --start server method
 
-* step2 working with request
+* step2 working with request method 
 --set url path and trim for unwanted / \ in url
 --set method lower case
 --set query string

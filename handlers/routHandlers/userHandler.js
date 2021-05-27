@@ -56,6 +56,7 @@ const tosAgreement =
         : false;
 
       if (firstName && lastName && phone && password && tosAgreement) {
+          
         // make sure that the user doesn't already exists
         data.read('users', phone, (err1) => {
             if (err1) {
